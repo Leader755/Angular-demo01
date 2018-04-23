@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" ng-app="myCart">
+<head>
+    <meta charset="UTF-8">
+    <title>淘宝购物车界面</title>
+    <link rel="stylesheet" href="css/taobao.css"/>
+    <script src="js/angular.min.js"></script>
+</head>
+<body ng-controller="myCart">
+<header>
+    <div class="wrap clearfix">
+        <div class="top-logo left">
+            <a href="" class="left"><img src="image/taobao_logo.gif" alt=""/></a>
+            <ul class="location left clearfix">
+                <li><a href="javascript: ">您的位置：<span>></span></a></li>
+                <li><a href="">首页<span>></span></a></li>
+                <li><a href="">我的淘宝<span>></span></a></li>
+                <li><a href="">我的购物车</a></li>
+            </ul>
+        </div>
+        <!--进度条-->
+        <ul class="progressBar clearfix">
+            <li><a href=""><i></i>1.查看购物车<span></span></a></li>
+            <li><a href="">2.确认订购信息<span></span></a></li>
+            <li><a href="">3.付款到支付宝<span></span></a></li>
+            <li><a href="">4.确认收货<span></span></a></li>
+            <li><a href="">5.评价<i></i></a></li>
+        </ul>
+    </div>
+</header>
+<nav>
+    <div class="wrap clearfix">
+        <div class="navList left">
+            <form class="left">
+                <input type="checkbox" id="checkbox" ng-model="all" ng-click="checkAll()"/><span>全选</span>
+            </form>
+            <div class="shop-baby left">
+                <span>店铺宝贝</span>
+            </div>
+            <ul class="left">
+                <li>获积分</li>
+                <li>单价(元)</li>
+                <li>数量</li>
+                <li>小计(元)</li>
+                <li>操作</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section>
+    <div class="wrap">
+        <div class="sec-title-first clearfix" id="myCart">
+            <div class="item" ng-repeat="item in data">
+                <div class="text-first">
+                    <ul>
+                        <li>店铺:<a href="javascript:void(0)">{{item.shop}}</a></li>
+                        <li>卖家:<a href="javascript:void(0)">{{item.saler}}</a></li>
+                        <li><a href="javascript:void(0)"></a></li>
+                    </ul>
+                </div>
+                <div class="img-table-first clearfix">
+                    <ul>
+                        <li><input type="checkbox" ng-model="item.isChecked"></li>
+                        <li><a href="javascript:void(0)"><img ng-src="{{item.picUrl}}"
+                                                              alt="javascript:void(0)"></a></li>
+                        <li><a href="javascript:void(0)">{{item.title}}</a>
+
+                            <p>保障：<a href="javascript:void(0)"></a></p></li>
+                        <li>{{item.point}}</li>
+                        <li>{{item.price | number :2}}</li>
+                        <li>
+                            <div><a href="javascript:void(0)" class="left drop" ng-click="reduce($index)"><img src="image/taobao_minus.jpg" alt=""></a><input type="text" class="left num" ng-model="item.num"/><a href="javascript:void(0)" class="left add" ng-click="add($index)"><img
+                                    src="image/taobao_adding.jpg" alt=""></a></div>
+                        </li>
+                        <li>{{item.num*item.price | number :2}}</li>
+                        <li><a href="javascript:void(0)" class="del" ng-click="del($index)">删除</a></li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="wrap clearfix">
+        <div class="text right">
+            <span>商品总价（不含运费）￥ <i id="allMoney">{{total |number :2}}</i>：元</span>
+            <span>可获积分 <i id="points">50</i> 点</span>
+            <a href="" class="right"><img src="image/taobao_subtn.jpg" alt=""/></a>
+        </div>
+        <div class="btn left">
+            <a href="javascript:void(0)" ng-click="delChecked()"><img src="image/taobao_del.jpg" alt=""/></a>
+        </div>
+    </div>
+</footer>
+<script src="js/taobao.js"></script>
+</body>
+</html>
